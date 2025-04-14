@@ -21,7 +21,7 @@ MongoClient.connect(uri).then((client)=>{
 app.post("/loginUser", async(req, res) => {
     const {email, password } = req.body;
 
-        const user = await db.collection('Buyers').findOne({email})
+        const user = await db.collection('Buyer').findOne({email})
 
         if(user == null){
             return res.json({message : "UNF"})

@@ -24,14 +24,17 @@ function Login() {
       const data = await response.json();
 
       if (data.message === "UNF") {
-        setErrorMsg("User Not Found");
-      } else if (data.message === "true") {
+        setTimeout( () => setErrorMsg("User Not Found"), 5000);
+      } 
+      else if (data.message === "true") {
         sessionStorage.setItem("userName", data.userName);
         sessionStorage.setItem("userEmail", data.email);
         navigate("/");
-      } else if (data.message === "false") {
-        setErrorMsg("Email or Password is Incorrect");
+      } 
+      else if (data.message === "false") {
+        setTimeout( () => setErrorMsg("Email or Password is Incorrect"), 5000);
       }
+      
     } catch (err) {
       console.log("Error:", err);
       setErrorMsg("Something went wrong. Please try again.");

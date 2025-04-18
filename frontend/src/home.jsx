@@ -31,7 +31,7 @@ function Home() {
                 <div className="d-flex align-items-center">
                   {user ? (
                     
-                    <Dropdown className="me-4">
+                    <Dropdown className="me-5">
                       
                       <Dropdown.Toggle
                         variant="link"
@@ -39,11 +39,12 @@ function Home() {
                         id="dropdown-basic"
                         style={{ textDecoration: 'none' }}
                         >
-                        {user} <span style={{ fontSize: '1rem' }}>▼</span>
+                        {user} 
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
                         <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
+                        <Dropdown.Item as={Link} to="/profile">Become a Seller</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                       </Dropdown.Menu>

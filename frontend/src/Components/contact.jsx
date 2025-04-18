@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
 import "../App.css";
 import "./contact.css";
+
+function handleLogout(){
+
+}
 
 function ContactPage() {
   const [user, setUser] = useState(null);
@@ -33,7 +37,26 @@ function ContactPage() {
           </Nav>
           <div className="d-flex align-items-center">
             {user ? (
-              <span className="fw-bold fs-5 text-success">{user}</span>
+              
+              <Dropdown className="me-5">
+                      
+                      <Dropdown.Toggle
+                        variant="link"
+                        className="text-success fw-bold fs-5 p-0 m-0"
+                        id="dropdown-basic"
+                        style={{ textDecoration: 'none' }}
+                        >
+                        {user} 
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
+                        <Dropdown.Item as={Link} to="/profile">Become a Seller</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
             ) : (
               <>
                 <Link to="/login">

@@ -27,13 +27,18 @@ function SignUp() {
 
       const data = await response.json();
 
-      if (data.message === "user exists") {
-        setErrorMsg("User already exists. Please try another username.");
+      if (data.message === "userName exist") {
+        setTimeout( () => setErrorMsg("Username already exists. Please try another username."), 5000);
         setSuccessMsg("");
-      } else {
-        setSuccessMsg("Account created successfully!");
+      }
+      else if(data.message === "User exist"){
+        setTimeout( () => setErrorMsg("Email already exists. Please try another email."), 5000);
+        setSuccessMsg("");
+      } 
+      else {
+        setTimeout( () => setSuccessMsg("Account created successfully!"), 5000) ;
         setErrorMsg("");
-        setTimeout(() => navigate("/login"), 1500);
+        setTimeout(() => navigate("/login"), 5000);
       }
     } catch (err) {
       console.log("Error:", err);

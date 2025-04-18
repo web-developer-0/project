@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Container, Navbar, Nav, Button, Row, Col } from "react-bootstrap";
+import { Container, Navbar, Nav, Button, Row, Col, Dropdown } from "react-bootstrap";
 import "./about.css";
 import "../App.css";
+
+function handleLogout(){
+
+}
 
 function AboutPage() {
   const [user, setUser] = useState(null);
@@ -27,7 +31,26 @@ function AboutPage() {
           </Nav>
           <div className="d-flex align-items-center">
             {user ? (
-              <span className="fw-bold fs-5 text-success">{user}</span>
+              
+              <Dropdown className="me-5">
+                      
+                      <Dropdown.Toggle
+                        variant="link"
+                        className="text-success fw-bold fs-5 p-0 m-0"
+                        id="dropdown-basic"
+                        style={{ textDecoration: 'none' }}
+                        >
+                        {user} 
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
+                        <Dropdown.Item as={Link} to="/profile">Become a Seller</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
             ) : (
               <>
                 <Link to="/login">

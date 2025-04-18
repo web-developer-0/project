@@ -44,6 +44,34 @@ app.post("/loginUser", async(req, res) => {
     
 });
 
+app.post("/signUp", async(req, res) => {
+
+    const {name, email, userName, password} = req.body;
+
+    const user = await db.collection("Buyer").findOne({email});
+
+    if(user == null){
+        const insert = await db.collection("Buyer").insertOne({
+            name : name,
+            email : email,
+            username : userName,
+            password : password
+        })
+
+        if(insert){
+            return res.json({message : "true"})
+        }
+        
+    }
+    else if (user.email == email){
+        return res.json({message : "user exist"})
+    }
+    else if(user.username == userName){
+        return res.json({message : "userName exist"})
+    }
+
+});
+
 
 app.listen(5000, ()=>{
     console.log("Server running on Port 5000")
